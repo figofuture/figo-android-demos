@@ -37,7 +37,14 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				final Dialog dialog = new Dialog(MainActivity.this);
-				//dialog.setContentView(R.layout.mydailog);
+				dialog.setContentView(R.layout.maindialog);
+				Button ok = (Button) dialog.findViewById(R.id.ok);
+				ok.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}});
 				//dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
 				dialog.show();
 				dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);

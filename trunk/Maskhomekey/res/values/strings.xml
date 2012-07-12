@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mask Homekey</string>
+    <string name="dialog">Dialog</string>
+    <string name ="exit">Exit</string>
+</resources>

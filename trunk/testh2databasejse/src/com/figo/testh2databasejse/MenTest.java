@@ -10,7 +10,7 @@ public class MenTest {
 
 	public void runInsertDelete() {  
         try {  
-            String sourceURL = "jdbc:h2:~/encrypted;CIPHER=AES";// H2DB  
+            String sourceURL = "jdbc:h2:./h2db/encrypted;CIPHER=AES";// H2DB  
                                                                         // mem  
                                                                         // mode  
             String user = "sa";  
@@ -28,8 +28,13 @@ public class MenTest {
             // stmt.execute("CREATE TABLE idtable(id INT,name VARCHAR(100));");  
             stmt.execute("DROP TABLE IF EXISTS TEST");  
             stmt.execute("CREATE TABLE TEST(NAME VARCHAR)");  
-            stmt.execute("INSERT INTO test VALUES('MuSoft')");  
-            stmt.execute("INSERT INTO test VALUES('StevenStander')");  
+            stmt.execute("INSERT INTO test VALUES('Star Trek')");
+            stmt.execute("INSERT INTO test VALUES('Android')");
+            stmt.execute("INSERT INTO test VALUES('borg')");  
+            stmt.execute("INSERT INTO test VALUES('BORG')");  
+            stmt.execute("INSERT INTO test VALUES('Google Borg')");  
+            stmt.execute("INSERT INTO test VALUES('Apple Borg')");  
+            stmt.execute("INSERT INTO test VALUES('iOS')");  
             stmt.close();  
             conn.close();  
         } catch (SQLException sqle) {  
@@ -38,9 +43,9 @@ public class MenTest {
     }  
     public void query(String SQL) {  
         try {  
-            String sourceURL = "jdbc:h2:~/encrypted;CIPHER=AES";  
+            String sourceURL = "jdbc:h2:./h2db/encrypted;CIPHER=AES";  
             String user = "sa";  
-            String key = "filepwd1  ";  
+            String key = "filepwd  ";  
             try {  
                 Class.forName("org.h2.Driver");  
             } catch (Exception e) {  

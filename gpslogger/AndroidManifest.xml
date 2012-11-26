@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.figo.gpslogger" android:versionCode="1"
+	android:versionName="1.0" android:installLocation="auto">
+
+	<uses-sdk android:minSdkVersion="5" />
+
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+	<supports-screens android:smallScreens="true"
+		android:normalScreens="true" android:largeScreens="true"
+		android:anyDensity="true" />
+
+	<!--suppress AndroidDomInspection -->
+	<application android:icon="@drawable/gpsloggericon2"
+		android:name="@string/app_name" android:label="@string/app_name">
+
+		<service android:name=".GpsLoggingService">
+			<intent-filter>
+				<action android:name="com.figo.gpslogger.GpsLoggingService" />
+			</intent-filter>
+		</service>
+
+		<activity android:name=".GpsMainActivity"
+			android:label="@string/app_name" android:launchMode="singleTask"
+			android:configChanges="locale">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".GpsSettingsActivity"
+			android:label="@string/settings_screen_name"
+			android:screenOrientation="portrait" />
+
+		<activity android:name=".shortcuts.ShortcutCreate"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.CREATE_SHORTCUT" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		
+		<activity android:name=".shortcuts.ShortcutStart"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".shortcuts.ShortcutStop"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+			</intent-filter>
+		</activity>
+
+		<receiver android:enabled="true"
+			android:name=".StartupReceiver"
+			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</receiver>
+
+		<receiver android:name=".senders.AlarmReceiver" />
+	</application>
+</manifest> 

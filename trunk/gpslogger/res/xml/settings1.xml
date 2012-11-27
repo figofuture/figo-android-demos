@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<EditTextPreference android:key="server_address"
+		android:title="@string/server_address_title" android:summary="@string/server_address_summary"
+		android:dialogTitle="@string/server_address_dialog_title"
+		android:defaultValue="@string/server_address__default" android:hint="@string/server_address__hint" />
+	<EditTextPreference android:key="proxy_address"
+		android:title="@string/proxy_address_title" android:summary="@string/proxy_address_summary"
+		android:dialogTitle="@string/proxy_address_dialog_title"
+		android:defaultValue="@string/proxy_address__default" android:hint="@string/proxy_address__hint" />
+	<EditTextPreference android:key="proxy_port"
+		android:title="@string/proxy_port_title" android:summary="@string/proxy_port_summary"
+		android:dialogTitle="@string/proxy_port_dialog_title" android:numeric="integer"
+		android:defaultValue="@string/proxy_port__default" android:hint="@string/proxy_port__hint" />
+</PreferenceScreen>

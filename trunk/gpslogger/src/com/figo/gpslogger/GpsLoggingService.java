@@ -763,7 +763,7 @@ public class GpsLoggingService extends Service implements IActionListener {
 				logger.Write(loc);
 				Session.setAllowDescription(true);
 			} catch (Exception e) {
-				SetStatus(R.string.could_not_write_to_file);
+				SetStatus(e.getLocalizedMessage());
 			}
 		}
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import com.figo.gpslogger.R;
 import org.w3c.dom.Document;
@@ -194,6 +195,28 @@ public class Utilities {
 				"autoopengts_server_path", ""));
 		AppSettings
 				.setOpenGTSDeviceId(prefs.getString("opengts_device_id", ""));
+
+		AppSettings.setServerAddress(prefs.getString("server_address",
+				context.getString(R.string.server_address__default)));
+
+		AppSettings.setProxyAddress(prefs.getString("proxy_address",
+				context.getString(R.string.proxy_address__default)));
+
+		AppSettings.setProxyPort(Integer.valueOf(prefs.getString("proxy_port",
+				context.getString(R.string.proxy_port__default))));
+
+		TelephonyManager tm = (TelephonyManager) context
+				.getSystemService(Context.TELEPHONY_SERVICE);
+		if (null != tm) {
+			String id = tm.getDeviceId();
+			if (null != id) {
+				AppSettings.setGUID(id);
+			} else {
+				AppSettings.setGUID("1234567890");
+			}
+		} else {
+			AppSettings.setGUID("1234567890");
+		}
 
 	}
 

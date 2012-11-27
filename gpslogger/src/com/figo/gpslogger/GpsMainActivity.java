@@ -376,7 +376,7 @@ public class GpsMainActivity extends Activity implements
 		switch (itemId) {
 		case R.id.mnuSettings:
 			Intent settingsActivity = new Intent(getApplicationContext(),
-					GpsSettingsActivity.class);
+					SettingsActivity.class);
 			startActivity(settingsActivity);
 			break;
 		case R.id.mnuExit:
@@ -920,20 +920,20 @@ public class GpsMainActivity extends Activity implements
 	}
 
 	public void onFileName(String newFileName) {
-//		if (newFileName == null || newFileName.length() <= 0) {
-//			return;
-//		}
-//
-//		TextView txtFilename = (TextView) findViewById(R.id.txtFileName);
-//
-//		if (AppSettings.shouldLogToGpx() || AppSettings.shouldLogToKml()) {
-//
-//			txtFilename.setText(getString(
-//					R.string.summary_current_filename_format,
-//					Session.getCurrentFileName()));
-//		} else {
-//			txtFilename.setText("");
-//		}
+		// if (newFileName == null || newFileName.length() <= 0) {
+		// return;
+		// }
+		//
+		// TextView txtFilename = (TextView) findViewById(R.id.txtFileName);
+		//
+		// if (AppSettings.shouldLogToGpx() || AppSettings.shouldLogToKml()) {
+		//
+		// txtFilename.setText(getString(
+		// R.string.summary_current_filename_format,
+		// Session.getCurrentFileName()));
+		// } else {
+		// txtFilename.setText("");
+		// }
 
 	}
 

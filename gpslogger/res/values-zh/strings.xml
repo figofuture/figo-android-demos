@@ -124,7 +124,7 @@
   <string name="autoemail_frequency_whenistop">当我点击停止</string>
   <string name="autoemail_frequency_8">在 8 小时后</string>
   <string name="fix_obtained">已获得修正</string>
-  <string name="started_waiting">GPS 已启动，正在等待修正</string>
+  <string name="started_waiting">GPS 已启动，正在等待更新</string>
   <string name="gps_stopped">GPS 已停止</string>
   <string name="stopped">已停止</string>
 </resources>

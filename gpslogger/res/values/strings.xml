@@ -378,4 +378,21 @@
     <string name="autoopengts_server_path_summary">Optional and only for HTTP-based communication. For example \'/gprmc/Data\'</string>
     <string name="autoopengts_device_id">Device ID</string>
 
+    <string name="server_address_title">Server address</string>
+    <string name="server_address_summary">Set current server address.</string>
+    <string name="server_address_dialog_title">Server address</string>
+    <string name="server_address__default">http://obdserver.appspot.com/setLocation</string>
+    <string name="server_address__hint">http://</string>
+    
+    <string name="proxy_address_title">Proxy address</string>
+    <string name="proxy_address_summary">Set current proxy address.</string>
+    <string name="proxy_address_dialog_title">Proxy address</string>
+    <string name="proxy_address__default">10.1.106.100</string>
+    <string name="proxy_address__hint">http://</string>
+    
+    <string name="proxy_port_title">Proxy port</string>
+    <string name="proxy_port_summary">Set current proxy port.</string>
+    <string name="proxy_port_dialog_title">Proxy port</string>
+    <string name="proxy_port__default">8080</string>
+    <string name="proxy_port__hint">8080</string>
 </resources>

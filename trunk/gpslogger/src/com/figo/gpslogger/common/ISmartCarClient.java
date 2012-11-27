@@ -127,7 +127,7 @@ public class ISmartCarClient {
 		// instantiates httpclient to make request
 		AsyncHttpClient httpclient = new AsyncHttpClient();
 
-		if (null != proxyName) {
+		if ((null != proxyName) && (!"".equalsIgnoreCase(proxyName.trim())) ) {
 			HttpHost proxyHost;
 			proxyHost = new HttpHost(proxyName, proxyPort);
 			httpclient.getHttpClient().getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,

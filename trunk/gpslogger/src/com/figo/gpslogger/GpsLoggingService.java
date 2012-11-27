@@ -9,6 +9,8 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.widget.Toast;
+
 import com.figo.gpslogger.R;
 import com.figo.gpslogger.common.AppSettings;
 import com.figo.gpslogger.common.IActionListener;
@@ -546,6 +548,10 @@ public class GpsLoggingService extends Service implements IActionListener {
 			mainServiceClient.OnStatusMessage(status);
 		}
 	}
+	
+	void SetMessage(String status) {
+		Toast.makeText(getApplicationContext(), status, Toast.LENGTH_LONG).show();
+	}
 
 	/**
 	 * Gives an error message to the main service client to display
@@ -763,7 +769,7 @@ public class GpsLoggingService extends Service implements IActionListener {
 				logger.Write(loc);
 				Session.setAllowDescription(true);
 			} catch (Exception e) {
-				SetStatus(e.getLocalizedMessage());
+				SetMessage(e.getLocalizedMessage());
 			}
 		}
 

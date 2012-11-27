@@ -18,7 +18,7 @@ public class ISmartCarLogger implements IFileLogger {
 		params.put("location_latitude", String.valueOf(loc.getLatitude()));
 		params.put("location_longitude", String.valueOf(loc.getLongitude()));
 		params.put("guid", AppSettings.getGUID());
-		new ISmartCarClient().Upload(AppSettings.getServerAddress(), params,
+		new ISmartCarClient().makeAsyncRequest(AppSettings.getServerAddress(), params,
 				AppSettings.getProxyAddress(), AppSettings.getProxyPort());
 	}
 

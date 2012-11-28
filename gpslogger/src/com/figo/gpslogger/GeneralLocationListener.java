@@ -69,7 +69,7 @@ class GeneralLocationListener implements LocationListener, GpsStatus.Listener {
 		switch (event) {
 		case GpsStatus.GPS_EVENT_FIRST_FIX:
 			Utilities.LogDebug("GPS Event First Fix");
-			mainService.SetStatus(mainService.getString(R.string.fix_obtained));
+			mainService.SetStatus(R.string.fix_obtained);
 			break;
 
 		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
@@ -93,13 +93,12 @@ class GeneralLocationListener implements LocationListener, GpsStatus.Listener {
 
 		case GpsStatus.GPS_EVENT_STARTED:
 			Utilities.LogInfo("GPS started, waiting for fix");
-			mainService.SetStatus(mainService
-					.getString(R.string.started_waiting));
+			mainService.SetStatus(R.string.started_waiting);
 			break;
 
 		case GpsStatus.GPS_EVENT_STOPPED:
 			Utilities.LogInfo("GPS Stopped");
-			mainService.SetStatus(mainService.getString(R.string.gps_stopped));
+			mainService.SetStatus(R.string.gps_stopped);
 			break;
 
 		}

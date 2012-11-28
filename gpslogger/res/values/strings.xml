@@ -395,4 +395,9 @@
     <string name="proxy_port_dialog_title">Proxy port</string>
     <string name="proxy_port__default">8080</string>
     <string name="proxy_port__hint">8080</string>
+    
+    <string name="time_before_logging_default">3</string>
+    
+    <string name="send_to_server_begin">Sending to server</string>
+    <string name="send_to_server_succ">Send to server successful!</string>
 </resources>

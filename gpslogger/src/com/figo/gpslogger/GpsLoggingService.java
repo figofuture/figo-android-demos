@@ -506,7 +506,7 @@ public class GpsLoggingService extends Service implements IActionListener {
 			gpsLocationManager.removeGpsStatusListener(gpsLocationListener);
 		}
 
-		SetStatus(getString(R.string.stopped));
+		// SetStatus(R.string.stopped);
 	}
 
 	/**
@@ -548,9 +548,10 @@ public class GpsLoggingService extends Service implements IActionListener {
 			mainServiceClient.OnStatusMessage(status);
 		}
 	}
-	
+
 	void SetMessage(String status) {
-		Toast.makeText(getApplicationContext(), status, Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), status, Toast.LENGTH_LONG)
+				.show();
 	}
 
 	/**
@@ -571,7 +572,7 @@ public class GpsLoggingService extends Service implements IActionListener {
 	 * @param stringId
 	 *            ID of string to lookup
 	 */
-	private void SetStatus(int stringId) {
+	void SetStatus(int stringId) {
 		String s = getString(stringId);
 		SetStatus(s);
 	}
@@ -629,43 +630,45 @@ public class GpsLoggingService extends Service implements IActionListener {
 
 		// Don't do anything until the user-defined accuracy is reached
 		if (false) {
-		if (AppSettings.getMinimumAccuracyInMeters() > 0) {
-			if (AppSettings.getMinimumAccuracyInMeters() < Math.abs(loc
-					.getAccuracy())) {
-				if (retryTimeout < 50) {
-					Session.setRetryTimeout(retryTimeout + 1);
-					SetStatus("Only accuracy of "
-							+ String.valueOf(Math.floor(loc.getAccuracy()))
-							+ " reached");
-					StopManagerAndResetAlarm(AppSettings.getRetryInterval());
-					return;
-				} else {
-					Session.setRetryTimeout(0);
-					SetStatus("Only accuracy of "
-							+ String.valueOf(Math.floor(loc.getAccuracy()))
-							+ " reached and timeout reached");
+			if (AppSettings.getMinimumAccuracyInMeters() > 0) {
+				if (AppSettings.getMinimumAccuracyInMeters() < Math.abs(loc
+						.getAccuracy())) {
+					if (retryTimeout < 50) {
+						Session.setRetryTimeout(retryTimeout + 1);
+						SetStatus("Only accuracy of "
+								+ String.valueOf(Math.floor(loc.getAccuracy()))
+								+ " reached");
+						StopManagerAndResetAlarm(AppSettings.getRetryInterval());
+						return;
+					} else {
+						Session.setRetryTimeout(0);
+						SetStatus("Only accuracy of "
+								+ String.valueOf(Math.floor(loc.getAccuracy()))
+								+ " reached and timeout reached");
+						StopManagerAndResetAlarm();
+						return;
+					}
+				}
+			}
+		}
+
+		// Don't do anything until the user-defined distance has been traversed
+		if (false) {
+			if (AppSettings.getMinimumDistanceInMeters() > 0
+					&& Session.hasValidLocation()) {
+				double distanceTraveled = Utilities.CalculateDistance(
+						loc.getLatitude(), loc.getLongitude(),
+						Session.getCurrentLatitude(),
+						Session.getCurrentLongitude());
+				if (AppSettings.getMinimumDistanceInMeters() > distanceTraveled) {
+					SetStatus("Only "
+							+ String.valueOf(Math.floor(distanceTraveled))
+							+ " m traveled.");
 					StopManagerAndResetAlarm();
 					return;
 				}
 			}
-		}}
-
-		// Don't do anything until the user-defined distance has been traversed
-		if (false) {
-		if (AppSettings.getMinimumDistanceInMeters() > 0
-				&& Session.hasValidLocation()) {
-			double distanceTraveled = Utilities
-					.CalculateDistance(loc.getLatitude(), loc.getLongitude(),
-							Session.getCurrentLatitude(),
-							Session.getCurrentLongitude());
-			if (AppSettings.getMinimumDistanceInMeters() > distanceTraveled) {
-				SetStatus("Only "
-						+ String.valueOf(Math.floor(distanceTraveled))
-						+ " m traveled.");
-				StopManagerAndResetAlarm();
-				return;
-			}
-		}}
+		}
 
 		Utilities.LogInfo("New location obtained");
 		ResetCurrentFileName(false);
@@ -766,10 +769,15 @@ public class GpsLoggingService extends Service implements IActionListener {
 
 		for (IFileLogger logger : loggers) {
 			try {
+				SetStatus(R.string.send_to_server_begin);
 				logger.Write(loc);
 				Session.setAllowDescription(true);
+				SetStatus(R.string.send_to_server_succ);
 			} catch (Exception e) {
-				SetMessage(e.getLocalizedMessage());
+				SetStatus(this.getString(R.string.error_connection) + " : "
+						+ e.getLocalizedMessage());
+			} finally {
+
 			}
 		}
 

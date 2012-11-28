@@ -130,13 +130,14 @@ public class Utilities {
 		}
 
 		String minimumSecondsString = prefs.getString("time_before_logging",
-				"1");
+				context.getString(R.string.time_before_logging_default));
 
 		if (minimumSecondsString != null && minimumSecondsString.length() > 0) {
 			AppSettings
 					.setMinimumSeconds(Integer.valueOf(minimumSecondsString));
 		} else {
-			AppSettings.setMinimumSeconds(1);
+			AppSettings.setMinimumSeconds(Integer.valueOf(context
+					.getString(R.string.time_before_logging_default)));
 		}
 
 		String retryIntervalString = prefs.getString("retry_time", "60");

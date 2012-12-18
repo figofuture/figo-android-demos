@@ -1,4 +1,4 @@
-package com.figo.testpowerprofile;
+package com.figo.powerprofilereader;
 
 import android.content.Context;
 import android.util.Log;

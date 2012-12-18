@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Power Profile Reader</string>
+    <string name="share_subject"> Power Profile</string>
+    <string name="menu_share">Share</string>
+
+</resources>

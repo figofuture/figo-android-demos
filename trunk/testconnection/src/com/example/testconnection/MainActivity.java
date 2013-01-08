@@ -3,6 +3,7 @@ package com.example.testconnection;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.TrafficStats;
@@ -11,13 +12,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	static TextView mTV = null;
-	static ConnectivityManager connMgr = null;
+	private final static String LOG_TAG = MainActivity.class.getSimpleName();
+	
+	TextView mTV = null;
+	ConnectivityManager connMgr = null;
+	AudioManager mAudioM = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -29,16 +34,11 @@ public class MainActivity extends Activity {
 		connMgr = (ConnectivityManager) this
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
 
+		mAudioM = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+
 		Timer timer = new Timer();
 		timer.schedule(new MyTask(), 0, 500);
-		
-		TextView tv = (TextView) findViewById(R.id.current);
-		// check if current data connection activity
-		if ( isDataActivity() ) {
-			tv.setText("Current data connection is active!");
-		} else {
-			tv.setText("Current data connection has no data request and/or transmit!");
-		}
+
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
-	static class MyTask extends TimerTask {
+	class MyTask extends TimerTask {
 
 		@Override
 		public void run() {
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 
 	}
 
-	static Handler mHandler = new Handler() {
+	Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 5000:
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 					content += nif.toString() + "\n\n";
 				}
 
-				content += "(API) Mobile Received Bytes: "
+				content = "(API) Mobile Received Bytes: "
 						+ TrafficStats.getMobileRxBytes() + "\n";
 				content += "(API) Mobile Transmitted Bytes: "
 						+ TrafficStats.getMobileTxBytes() + "\n";
@@ -94,6 +94,52 @@ public class MainActivity extends Activity {
 						+ "\n";
 
 				mTV.setText(content);
+
+				TextView tv = (TextView) findViewById(R.id.current);
+				String status = null;
+				// check if current data connection activity
+				if (isDataActivity()) {
+					status = "Current data connection is active!";
+				} else {
+					status  = "Current data connection has no data request and/or transmit!";
+				}
+				
+				status += "\n";
+				
+				int mode = mAudioM.getMode();
+				switch ( mode ) {
+				case AudioManager.MODE_CURRENT:
+					status += "Current audio mode. Used to apply audio routing to current mode. ";
+					break;
+				case AudioManager.MODE_IN_CALL:
+					status += "In call audio mode. A telephony call is established. ";
+					break;
+				case AudioManager.MODE_IN_COMMUNICATION:
+					status += "In communication audio mode. An audio/video chat or VoIP call is established. ";
+					break;
+				case AudioManager.MODE_INVALID:
+					status += "Invalid audio mode. ";
+					break;
+				case AudioManager.MODE_NORMAL:
+					status += "Normal audio mode: not ringing and no call established. ";
+					break;
+				case AudioManager.MODE_RINGTONE:
+					status += "Ringing audio mode. An incoming is being signaled. ";
+					break;
+				}
+				
+				status += "\n";
+				
+				if ( mAudioM.isMusicActive() ) {
+					status += " Playing audio ";
+				} else {
+					status +="Stop playing audio";
+				}
+				
+				status += "\n";
+				
+				Log.i(LOG_TAG, status);
+				tv.setText(status);
 				break;
 			}
 			super.handleMessage(msg);

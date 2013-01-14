@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="white">#ffffff</color>
+	<color name="color_link">#004680</color>
+	<color name="black">#000000</color>
+	<color name="gray">#737373</color>
+	<color name="yellow">#ffffff00</color>
+	<color name="edittext_gray_dark">#C6CBC6</color>
+	<color name="edittext_gray_light">#DDD</color>
+	<color name="green">#66CC00</color>
+	<color name="dark_green">#008f0a</color>
+	<color name="orange">#FF9900</color>
+	<color name="small_yellow">#FFFFCC</color>
+	<color name="dark_red">#350000</color>
+	<color name="light_blue">#6599CD</color>
+	<color name="red">#ff0000</color>
+	<color name="red1">#a70d0d</color>
+	<color name="list_text_color">#ff8c8e8c</color>
+	<color name="tab_title_normal">#D8D8D8</color>
+	<color name="start_optimize">#8fe532</color>
+	<drawable name="translucent_background">#a0000000</drawable>
+	<color name="color_single_line">#222222</color>	
+	<color name="yellow_mars_warning">#ffa200</color>
+	<color name="green_mars_good">#008f0a</color>
+	<color name="red_mars_critical">#a70d0d</color>
+	<color name="color_disable_button">#777777</color>
+	<color name="widget_jaf_on_color">#5dff00</color>
+	<color name="widget_jaf_off_color">#aaaaaa</color>	   
+	<color name="spark_color_2">#c7ff8f</color>
+	<color name="spark_color_3">#80ff00</color>
+	<color name="transparent">#00000000</color>
+	<drawable name="transparent">#00000000</drawable>
+	<drawable name="black_translucent_5">#08000000</drawable>
+	
+	<color name="text_color">#444444</color>
+	<color name="text_color_disable">#80222222</color>
+	
+	<color name="button_shadow">#4c000000</color>
+	<color name="greyscale">#444444</color>
+	<color name="color_link_light">#4a6d9d</color>
+</resources>

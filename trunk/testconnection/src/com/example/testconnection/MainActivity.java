@@ -10,6 +10,8 @@ import android.net.TrafficStats;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -37,8 +39,18 @@ public class MainActivity extends Activity {
 		mAudioM = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 
 		Timer timer = new Timer();
-		timer.schedule(new MyTask(), 0, 500);
-
+		//timer.schedule(new MyTask(), 0, 500);
+		
+		 //String words = Security.descrypt("AD4ED8B28EE54FB74EFC61710319650A");
+		 //Log.i(LOG_TAG,words);
+		int brightness = 0;
+		try {
+			brightness = Settings.System.getInt(getContentResolver(),
+					Settings.System.SCREEN_BRIGHTNESS);
+		} catch (SettingNotFoundException e) {
+			e.printStackTrace();
+		}
+		Log.i(LOG_TAG,"brightness: " + brightness);
 	}
 
 	@Override
@@ -138,7 +150,7 @@ public class MainActivity extends Activity {
 				
 				status += "\n";
 				
-				Log.i(LOG_TAG, status);
+				//Log.i(LOG_TAG, status);
 				tv.setText(status);
 				break;
 			}

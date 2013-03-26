@@ -1,14 +1,3 @@
-/*
- * ***********************************************************************************
- * TREND MICRO HIGHLY CONFIDENTIAL INFORMATION:
- * THIS SOFTWARE CONTAINS CONFIDENTIAL INFORMATION AND TRADE SECRETS OF TREND MICRO 
- * INCORPORATED AND MAY BE PROTECTED BY ONE OR MORE PATENTS. USE, DISCLOSURE, OR 
- * REPRODUCTION OF ANY PORTION OF THIS SOFTWARE IS PROHIBITED WITHOUT THE PRIOR 
- * EXPRESS WRITTEN PERMISSION OF TREND MICRO INCORPORATED. 
- *
- * Copyright (c) 2011 Trend Micro Incorporated. All rights reserved as an unpublished work. 
- * ***********************************************************************************
- */
 package com.example.testconnection;
 
 import java.io.BufferedInputStream;

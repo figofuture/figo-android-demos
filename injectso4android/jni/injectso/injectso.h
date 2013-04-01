@@ -26,7 +26,7 @@ int inject_process( pid_t pid, const char *library_path, const char *function_na
 
 void* get_remote_module_addr(pid_t pid,const char* module_name,void* local_func_addr);
 
-int find_pid_of( const char *process_name );
+int find_pid_by_name( const char *process_name );
 
 #ifdef __cplusplus
 }

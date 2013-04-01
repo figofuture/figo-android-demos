@@ -19,6 +19,7 @@ struct Hook{
 	pid_t pid;		
 	void* remote_dlopen_addr;	
 	void* remote_dlsym_addr;
+	void* remote_dlclose_addr;
 	void* remote_mmap;
 };
 

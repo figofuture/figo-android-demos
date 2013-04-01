@@ -26,6 +26,7 @@ extern uint32_t _dlopen_addr_s,
 	_dlopen_param1_s,
 	_dlsym_addr_s,
 	_dlsym_param2_s,
+	_dlclose_addr_s,
 	_inject_start_s,
 	_inject_end_s,
 	_inject_function_param_s,
@@ -94,6 +95,7 @@ int inject_process( pid_t pid, const char *library_path, const char *function_na
 
 	hook.remote_dlopen_addr = get_remote_module_addr( pid, LINKER_PATH, (void *)dlopen );
 	hook.remote_dlsym_addr = get_remote_module_addr( pid, LINKER_PATH, (void *)dlsym );
+	hook.remote_dlclose_addr = get_remote_module_addr( pid, LINKER_PATH, (void *)dlclose );
 	hook.remote_mmap = get_remote_module_addr( pid, LIBC_PATH, (void *)mmap );
 
 	uint8_t *map_base;
@@ -137,7 +139,7 @@ int inject_process( pid_t pid, const char *library_path, const char *function_na
 
 	map_base = (uint8_t *)regs.ARM_r0;
 
-	printf( "[+] Get imports: dlopen: %x, dlsym: %x\n", hook.remote_dlopen_addr, hook.remote_dlsym_addr );
+	printf( "[+] Get imports: dlopen: %x, dlsym: %x, dlclose: %x \n", hook.remote_dlopen_addr, hook.remote_dlsym_addr, hook.remote_dlclose_addr );
 
 	remote_code_ptr = map_base + 0x3C00;
 	local_code_ptr = (uint8_t *)&_inject_start_s;
@@ -145,6 +147,7 @@ int inject_process( pid_t pid, const char *library_path, const char *function_na
 
 	_dlopen_addr_s = (uint32_t)hook.remote_dlopen_addr;
 	_dlsym_addr_s = (uint32_t)hook.remote_dlsym_addr;
+	_dlclose_addr_s = (uint32_t)hook.remote_dlclose_addr;
 
 	printf( "[+] Inject code start: %x, end: %x\n", local_code_ptr, &_inject_end_s );
 

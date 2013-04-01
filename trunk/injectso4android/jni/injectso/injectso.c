@@ -33,7 +33,7 @@ extern uint32_t _dlopen_addr_s,
 	_saved_r0_pc_s;
 
 
-void* get_libarary_addr( pid_t pid, const char* module_name )
+void* get_library_addr( pid_t pid, const char* module_name )
 {
 	FILE *fp;
 	long addr = 0;
@@ -79,9 +79,9 @@ void* get_remote_module_addr( pid_t target_pid, const char* module_name, void* l
 {
 	void* local_handle, *remote_handle;
 
-	local_handle = get_libarary_addr( -1, module_name );
+	local_handle = get_library_addr( -1, module_name );
 
-	remote_handle = get_libarary_addr( target_pid, module_name );
+	remote_handle = get_library_addr( target_pid, module_name );
 
 	return (void *)( (uint32_t)local_addr + (uint32_t)remote_handle - (uint32_t)local_handle );
 }

@@ -5,6 +5,8 @@
 .global _dlsym_addr_s
 .global _dlsym_param2_s
 
+.global _dlclose_addr_s
+
 .global _inject_start_s
 .global _inject_end_s
 
@@ -24,19 +26,26 @@ _inject_start_s:
 	ldr r3, _dlopen_addr_s
 	blx r3
 	subs r4, r0, #0
-	beq	2f
+	beq 2f
 
 	@dlsym
 	ldr r1, _dlsym_param2_s
 	ldr r3, _dlsym_addr_s
 	blx r3
 	subs r3, r0, #0
+        beq 1f
 
 	@call our function
 	ldr r0, _inject_function_param_s
 	blx r3
 	subs r0, r0, #0
 	beq 2f
+
+1:
+	@dlclose
+	mov r0, r4
+	ldr r3, _dlclose_addr_s
+	blx r3
 
 2:
 	@restore context
@@ -58,6 +67,9 @@ _dlsym_addr_s:
 .word 0x11111111
 
 _dlsym_param2_s:
+.word 0x11111111
+
+_dlclose_addr_s:
 .word 0x11111111
 
 _inject_function_param_s:

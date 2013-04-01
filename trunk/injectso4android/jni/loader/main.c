@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 		exit(-1);
 	}
 
-	inject_process(pid, argv[2], "test", "Hook start !!", strlen("Hook start !!") );
+	inject_process(pid, argv[2], "hook", "Hook start !!", strlen("Hook start !!") );
 
 	return 0;
 }

@@ -7,8 +7,8 @@ LOCAL_CFLAGS  +=  -Wall \
 LOCAL_LDLIBS +=  -llog 
 
 LOCAL_SRC_FILES += \
-		libtest.c 
+		libhook.c 
 
-LOCAL_MODULE := test
+LOCAL_MODULE := hook
 
 include $(BUILD_SHARED_LIBRARY)

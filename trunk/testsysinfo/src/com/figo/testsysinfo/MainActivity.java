@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
 		 buildDeviceMetaInfo(this);
 		 buildDeviceInfo(this);
 		 buildSettingsInfo(this);
-		// buildAppsInfo(this);
+		 buildAppsInfo(this);
 	}
 
 	@Override
